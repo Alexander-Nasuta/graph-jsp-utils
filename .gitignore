@@ -3,7 +3,7 @@ __pycache__/
 *.py[cod]
 *$py.class
 
-main.py
+_main.py
 
 resources/jsp_instances
 resources/jps_instance_details

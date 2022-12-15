@@ -72,7 +72,7 @@ no_implicit_reexport = true
 # push = true
 
 [tool.bumpver]
-current_version = "0.1.0"
+current_version = "0.0.1"
 version_pattern = "MAJOR.MINOR.PATCH"
 commit_message  = "Bump version {old_version} -> {new_version}"
 commit          = true
@@ -94,4 +94,4 @@ push            = false
 ]
 
 [project.urls]
-Homepage = "https://github.com/Alexander-Nasuta/pypitemplate"
+Homepage = "https://github.com/Alexander-Nasuta/graph-jsp-utils"

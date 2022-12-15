@@ -25,7 +25,7 @@
 # About The Project
 todo
 
-Github: todo
+Github: https://github.com/Alexander-Nasuta/graph-jsp-utils
 
 PyPi: todo
 
