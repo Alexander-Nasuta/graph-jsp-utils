@@ -64,7 +64,7 @@ def download_benchmark_instances_details(target_dir: pl.Path) -> None:
     log.info(f"successfully saved details to .json file ('{jsp_instance_details_file_path}')")
 
 
-def parse_instance_details(instance_deatils_file_path: pl.Path) -> Dict:
+def parse_instance_details(instance_details_file_path: pl.Path) -> Dict:
     """
     reads 'jps_instance_details/benchmark_details.json' file and returns it as a dictionary.
 
@@ -72,12 +72,12 @@ def parse_instance_details(instance_deatils_file_path: pl.Path) -> Dict:
 
     :return: the 'jps_instance_details/benchmark_details.json'-file as a python dictionary
     """
-    with open(instance_deatils_file_path) as f:
+    with open(instance_details_file_path) as f:
         details_dict = json.load(f)
     return details_dict
 
 
-def get_jps_instance_details(instance_deatils_file_path: pl.Path, instance: str) -> Dict:
+def get_jps_instance_details(instance_details_file_path: pl.Path, instance: str) -> Dict:
     """
     looks up the details-entry that corresponds to the specified instance in the
     'jps_instance_details/benchmark_details.json'-file and returns them as a python dictionary.
@@ -85,7 +85,7 @@ def get_jps_instance_details(instance_deatils_file_path: pl.Path, instance: str)
     :param instance: the name of instance (example: 'ft06'). see: http://jobshop.jjvh.nl/index.php
     :return:
     """
-    return parse_instance_details(instance_deatils_file_path=instance_deatils_file_path)[instance]
+    return parse_instance_details(instance_details_file_path=instance_details_file_path)[instance]
 
 
 if __name__ == '__main__':
@@ -94,9 +94,15 @@ if __name__ == '__main__':
         .joinpath("resources")
 
     download_benchmark_instances_details(target_dir=resources_path)
-    # details = parse_instance_details()
 
-    # log.info(f"EXAMPLE: details for ft06: {details['ft06']}")
+    details_path = resources_path.joinpath("jps_instance_details").joinpath("benchmark_details.json")
+    details = parse_instance_details(
+        instance_details_file_path=details_path
+    )
+    details_ft10 = get_jps_instance_details(
+        instance_details_file_path=details_path,
+        instance="ft10"
+    )
+    log.info(f"EXAMPLE: details for ft06: {details['ft06']}")
+    log.info(f"EXAMPLE: details for ft06: {details_ft10}")
 
-    # update_custom_instance_details()
-    # get_jps_instance_details("abz6")

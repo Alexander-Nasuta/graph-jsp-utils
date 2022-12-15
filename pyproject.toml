@@ -20,7 +20,10 @@ dependencies = [
     "numpy",
     "requests",
     "beautifulsoup4",
-
+    "pandas",
+    "matplotlib",
+    "ortools",
+    "graph-jsp-env"
 ]
 requires-python = ">=3.9"
 

@@ -6,6 +6,7 @@ __pycache__/
 main.py
 
 resources/jsp_instances
+resources/jps_instance_details
 tests/test_resources
 
 # C extensions

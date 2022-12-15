@@ -1,7 +1,9 @@
 import os
 import pytest
 import pathlib as pl
+
 from graph_jsp_utils.jsp_instance_downloader import download_instances
+from graph_jsp_utils.jsp_instance_details import download_benchmark_instances_details
 
 
 @pytest.fixture(autouse=True)
@@ -38,6 +40,7 @@ def with_clean_resources_folder():
     yield None
     # Code that will run after the tests
 
+
 @pytest.fixture(scope="function")
 def resources_path():
     resources_path = pl.Path(os.path.abspath(__file__)).parent.joinpath("test_resources")
@@ -48,3 +51,19 @@ def resources_path():
 def download_ft06(resources_path):
     download_instances(target_directory=resources_path, start_id=6, end_id=6)
     yield None
+
+
+@pytest.fixture(scope="function")
+def download_details(resources_path):
+    download_benchmark_instances_details(
+        target_dir=resources_path
+    )
+
+
+@pytest.fixture(scope="function")
+def ft06_jsp_instance(download_ft06, download_details, resources_path):
+    import graph_jsp_utils.jsp_instance_parser as parser
+    jsp_instance, _ = parser.parse_jps_taillard_specification(
+        resources_path.joinpath("taillard").joinpath("ft06.txt")
+    )
+    yield jsp_instance
